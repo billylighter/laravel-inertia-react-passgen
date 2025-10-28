@@ -1,0 +1,120 @@
+import { useForm, usePage } from '@inertiajs/react';
+import PrimaryButton from '@/Components/PrimaryButton';
+import InputLabel from '@/Components/InputLabel';
+import TextInput from '@/Components/TextInput';
+import Checkbox from '@/Components/Checkbox';
+import InputError from '@/Components/InputError';
+
+export default function PasswordGenerator() {
+    const { props } = usePage();
+    const { status, generatedPasswords } = props;
+
+    const { data, setData, post, processing, errors } = useForm({
+        length: 12,
+        count: 1,
+        numbers: true,
+        symbols: true,
+        uppercase: true,
+        lowercase: true,
+    });
+
+    const submit = (e) => {
+        e.preventDefault();
+        post(route('password.generate'));
+    };
+
+    return (
+        <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow p-6 space-y-4">
+
+            {status === 'generated' && (
+                <div className="space-y-2 mt-4">
+                    {generatedPasswords.map((pass, idx) => (
+                        <div
+                            key={idx}
+                            className="p-2 border rounded bg-gray-50 dark:bg-gray-700 flex justify-between items-center"
+                        >
+                            <span className="font-mono text-sm break-all">{pass}</span>
+                            <button
+                                onClick={() => navigator.clipboard.writeText(pass)}
+                                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                            >
+                                Copy
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            <form onSubmit={submit} className="space-y-4">
+                <div>
+                    <InputLabel htmlFor="length" value="Password Length" />
+                    <TextInput
+                        id="length"
+                        type="number"
+                        min="4"
+                        max="64"
+                        value={data.length}
+                        onChange={(e) => setData('length', e.target.value)}
+                        className="mt-1 block w-24"
+                    />
+                    <InputError message={errors.length} className="mt-2" />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="count" value="Number of Passwords" />
+                    <TextInput
+                        id="count"
+                        type="number"
+                        min="1"
+                        max="50"
+                        value={data.count}
+                        onChange={(e) => setData('count', e.target.value)}
+                        className="mt-1 block w-24"
+                    />
+                    <InputError message={errors.count} className="mt-2" />
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                    <label className="flex items-center space-x-2">
+                        <Checkbox
+                            name="numbers"
+                            checked={data.numbers}
+                            onChange={(e) => setData('numbers', e.target.checked)}
+                        />
+                        <span>Numbers</span>
+                    </label>
+
+                    <label className="flex items-center space-x-2">
+                        <Checkbox
+                            name="symbols"
+                            checked={data.symbols}
+                            onChange={(e) => setData('symbols', e.target.checked)}
+                        />
+                        <span>Symbols</span>
+                    </label>
+
+                    <label className="flex items-center space-x-2">
+                        <Checkbox
+                            name="uppercase"
+                            checked={data.uppercase}
+                            onChange={(e) => setData('uppercase', e.target.checked)}
+                        />
+                        <span>Uppercase Letters</span>
+                    </label>
+
+                    <label className="flex items-center space-x-2">
+                        <Checkbox
+                            name="lowercase"
+                            checked={data.lowercase}
+                            onChange={(e) => setData('lowercase', e.target.checked)}
+                        />
+                        <span>Lowercase Letters</span>
+                    </label>
+                </div>
+
+                <PrimaryButton disabled={processing}>Generate</PrimaryButton>
+            </form>
+
+        </div>
+    );
+}
