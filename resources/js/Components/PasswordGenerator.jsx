@@ -45,7 +45,6 @@ export default function PasswordGenerator() {
 
     useEffect(() => {
         if (initialRender.current) {
-            // пропускаем первый рендер
             initialRender.current = false;
             return;
         }
@@ -196,7 +195,7 @@ export default function PasswordGenerator() {
                                     className="mt-1 block w-24"
                                 />
                             </div>
-                            {/* Новое поле для количества паролей */}
+
                             <div>
                                 <InputLabel htmlFor="count" value="Amount" />
                                 <TextInput
