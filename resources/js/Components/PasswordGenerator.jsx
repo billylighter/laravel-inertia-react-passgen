@@ -21,8 +21,8 @@ export default function PasswordGenerator() {
         // Passphrase options
         words: 4,
         separator: '-',
-        capitalize: false,
-        includeNumber: false,
+        capitalize: true,
+        includeNumber: true,
     });
 
     const [copiedIndex, setCopiedIndex] = useState(null);
@@ -75,13 +75,9 @@ export default function PasswordGenerator() {
             {generatedPasswords && (
                 <div className="space-y-2 mt-4">
                     {generatedPasswords.map((pass, idx) => (
-                        <div
-                            key={idx}
-                            className="p-2 border rounded flex justify-between items-center border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"
-                        >
-    <span className="font-mono text-sm break-all max-w-[70%] overflow-x-auto">
-        {pass}
-    </span>
+                        <div key={idx}
+                            className="p-2 border rounded flex justify-between items-center border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+                            <span className="font-mono text-sm break-all max-w-[70%] overflow-x-auto">{pass}</span>
                             <button
                                 onClick={() => handleCopy(pass, idx)}
                                 className={`px-3 py-1 rounded-md text-sm font-medium transition-colors duration-300 ${
@@ -121,9 +117,9 @@ export default function PasswordGenerator() {
                                 </label>
                             </div>
                         ))}
+
                     </div>
                 </div>
-
 
                 {data.type === 'classic' && (
                     <>
