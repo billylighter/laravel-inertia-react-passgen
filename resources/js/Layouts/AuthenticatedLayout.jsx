@@ -4,6 +4,7 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
+import ThemeToggle from "@/Components/ThemeToggle.jsx";
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -28,7 +29,11 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
-                            <div className="ms-3 relative">
+                            <div className={"flex items-center justify-center"}>
+                                <ThemeToggle />
+                            </div>
+                            <div className={"ms-3 dark:text-gray-200 text-gray-600"}>|</div>
+                            <div className="relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
@@ -98,9 +103,19 @@ export default function Authenticated({ user, header, children }) {
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+
                         <div className="px-4">
-                            <div className="font-medium text-base text-gray-800 dark:text-gray-200">{user.name}</div>
-                            <div className="font-medium text-sm text-gray-500">{user.email}</div>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <div className="font-medium text-base text-gray-800 dark:text-gray-200">{user.name}</div>
+                                    <div className="font-medium text-sm text-gray-500">{user.email}</div>
+                                </div>
+                                <div>
+                                    <div className={"flex items-center justify-center"}>
+                                        <ThemeToggle />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="mt-3 space-y-1">
