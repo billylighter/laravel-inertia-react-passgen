@@ -34,20 +34,20 @@ export default function Welcome({ auth }) {
                     )}
                 </div>
 
-                <div className="max-w-md w-full p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl backdrop-blur-lg border border-gray-200 dark:border-gray-700 transform hover:-translate-y-1 transition-transform duration-300">
+                <div className="max-w-md w-full p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-md backdrop-blur-lg border border-gray-200 dark:border-gray-700">
                     <div className="text-center mb-6">
                         <h1 className="text-3xl font-extrabold text-gray-800 dark:text-gray-100">
                             🔐 Smart Password Generator
                         </h1>
                         <p className="text-gray-500 dark:text-gray-400 mt-2">
-                            Create strong and unique passwords in one click
+                            Keep your passwords unguessable
                         </p>
                     </div>
 
                     <PasswordGenerator />
 
                     <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                        Powered by Laravel + Inertia + React
+                        © 2025 Made with ❤️
                     </div>
                 </div>
 

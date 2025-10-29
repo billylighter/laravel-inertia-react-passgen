@@ -22,13 +22,11 @@ class PasswordController extends Controller
             ])];
 
             session([
-                'generatedPasswords' => $defaultPasswords,
-                'status' => 'generated',
+                'generatedPasswords' => $defaultPasswords
             ]);
         }
 
         return Inertia::render('Welcome', [
-            'status' => session('status'),
             'generatedPasswords' => session('generatedPasswords'),
         ]);
     }
@@ -50,7 +48,6 @@ class PasswordController extends Controller
         }
 
         return Redirect::route('password.index')
-            ->with('status', 'generated')
             ->with('generatedPasswords', $passwords);
     }
 
