@@ -9,7 +9,7 @@ export default function Welcome({ auth }) {
 
             <div className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-500">
 
-                <div className="absolute top-0 right-0 p-6 flex items-center space-x-4">
+                <div className=" p-6 flex items-center space-x-4">
                     <ThemeToggle />
                     <div className={"ms-3 dark:text-gray-200 text-gray-600"}>|</div>
                     {auth.user ? (
@@ -54,10 +54,6 @@ export default function Welcome({ auth }) {
                     </div>
                 </div>
 
-                <div className="absolute inset-0 -z-10 overflow-hidden">
-                    <div className="absolute w-72 h-72 bg-indigo-400/30 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
-                    <div className="absolute w-96 h-96 bg-pink-400/20 rounded-full blur-3xl bottom-10 right-10 animate-pulse"></div>
-                </div>
             </div>
         </>
     )
